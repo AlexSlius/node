@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+
+  dev:
+    build: ./
+    restart: always
+    environment:
+      CMD: "npm run dev"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
