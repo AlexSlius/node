@@ -1,8 +1,8 @@
 version: "3.5"
 
 services:
-
   dev:
+    container_name: node_server
     build: ./
     restart: always
     environment:
@@ -11,3 +11,12 @@ services:
       - 3000:3000
     volumes:
       - ./:/app
+  bd_auth:
+    container_name: bd_auth
+    image: postgres:14.3-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root

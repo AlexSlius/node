@@ -1,0 +1,7 @@
+{
+    "host": "bd_auth",
+    "user": "admin",
+    "password": "root",
+    "database": "node_postgres",
+    "port": 5432
+}
