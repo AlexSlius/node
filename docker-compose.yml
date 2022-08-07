@@ -11,6 +11,8 @@ services:
       - 3000:3000
     volumes:
       - ./:/app
+    depends_on:
+      - bd_auth
   bd_auth:
     container_name: bd_auth
     image: postgres:14.3-alpine
@@ -18,5 +20,13 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+    volumes:
+      - ./.cmd/docker-postgres-init.sql:/docker-entrypoint-initdb.d/docker-postgres-init.sql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
