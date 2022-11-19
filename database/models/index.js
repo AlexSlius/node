@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const path = require("path");
 const config = require('../../config/database.json');
 
-const Person = require('./person');
+const Users = require('./users');
+const Post = require('./post');
 
 // initialize database connection
 const sequelize = new Sequelize(
@@ -14,7 +14,8 @@ const sequelize = new Sequelize(
 
 const db = {};
 
-db.Person = Person(sequelize, Sequelize.DataTypes);
+db.User = Users(sequelize, Sequelize.DataTypes);
+db.Post = Post(sequelize, Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
     if (db[modelName].associate) {

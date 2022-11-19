@@ -2,28 +2,18 @@ require('dotenv').config();
 
 const koa = require('koa');
 const koaBody = require('koa-body');
+const cors = require('@koa/cors');
+const passport = require('koa-passport')
 
 const app = new koa();
-const router = require('./router');
+const router = require('./routers');
 
-const logs = require('./logs');
+passport.initialize()
+require('./middelware/passport')(passport);
 
-const port = process.env.PORT ?? 3000;
-const host = process.env.HOST ?? "0.0.0.0";
-
-app.use(async (ctx, next) => {
-    try {
-        await logs(ctx.request.header);
-        await next();
-    } catch {
-        console.error("Internal error logs");
-    }
-});
-
+app.use(cors());
 app.use(koaBody());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(port, host, () => {
-    console.log(`Start server port ${port}, host ${host}`);
-});
+module.exports = app;

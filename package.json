@@ -4,16 +4,22 @@
     "description": "node.js on docker",
     "author": "Alex Sliusarchuk",
     "scripts": {
-        "dev": "nodemon --legacy-watch app.js",
-        "serve": "node app.js"
+        "dev": "nodemon --legacy-watch index.js",
+        "serve": "node index.js"
     },
     "dependencies": {
+        "@koa/cors": "^4.0.0",
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
         "dotenv": "^16.0.1",
         "joi": "^17.6.0",
+        "jsonwebtoken": "^8.5.1",
         "koa": "^2.13.4",
         "koa-body": "^5.0.0",
+        "koa-passport": "^5.0.0",
         "koa-router": "^12.0.0",
         "nodemon": "^2.0.19",
+        "passport-jwt": "^4.0.0",
         "path": "^0.12.7",
         "pg": "^8.7.3",
         "sequelize": "^6.21.3"
